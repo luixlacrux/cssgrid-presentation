@@ -5,16 +5,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>Css Grid</title>
+  <title>CSS Grid Layout</title>
 
   <link rel="stylesheet" href="vendor/reveal/css/reveal.css">
   <link rel="stylesheet" href="vendor/reveal/css/theme/black.css">
 
   <!-- Theme used for syntax highlighting of code -->
   <link rel="stylesheet" href="vendor/reveal/lib/css/zenburn.css">
+  <link rel="stylesheet" href="vendor/reveal/lib/css/github.css">
 
   <link rel="stylesheet" href="css/custom.css">
-
+  <style id="tmp">
+    #grid-track-sizing .grid {
+      display: grid;
+      grid-template-columns: ;
+      grid-template-rows: ;
+    }
+  </style>
+  <script>
+    function applyCSS(textarea) {
+      var tmp = document.getElementById("tmp");
+      tmp.innerHTML = textarea.value.replace(/^(\.\w+)/g, "#" + textarea.getAttribute("data-id") + " $1");
+      textarea.rows = textarea.value.split(/\n/).length;
+    }
+  </script>
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement('link');
@@ -25,6 +39,7 @@
       : 'vendor/reveal/css/print/paper.css';
     document.getElementsByTagName('head')[0].appendChild(link);
   </script>
+
 </head>
 
 <body>
@@ -199,6 +214,354 @@
           </div>
         </section>
       </section>
+      <section>
+        <section>
+          <div class="custom-overlay">
+            <h1>Syntaxis</h1>
+          </div>
+        </section>
+        <section data-markdown>
+          <div class="custom-overlay">
+            <textarea data-template>
+              ## Tamaño de los tracks (Filas/Columnas)
+              `grid-template-columns` & `grid-template-rows`
+            </textarea>
+          </div>
+        </section>
+        <section>
+          <h2>Tamaño de los tracks</h2>
+          <div class="html-output-css">
+<pre class="html">
+<code data-trim="" class=" hljs ">
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"b"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"d"</span>&gt;</span>D<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code>
+</pre>
+            <div id="grid-track-sizing" class="output">
+              <div class="grid">
+                <div class="a">A</div>
+                <div class="b">B</div>
+                <div class="c">C</div>
+                <div class="d">D</div>
+              </div>
+            </div>
+            <textarea class="css" data-id="grid-track-sizing" rows="3">
+.grid {
+  display: grid;
+  grid-template-columns:  ;
+  grid-template-rows:  ;
+}
+            </textarea>
+          </div>
+        </section>
+        <section>
+          <h2>Colocación de items</h2>
+          <p>
+            <code>grid-column</code> &
+            <code>grid-row</code>
+          </p>
+          <p>Orden del DOM ≠ Orden Visual</p>
+        </section>
+        <section>
+          <h2>Colocación de items</h2>
+          <div class="html-output-css">
+<pre class="html">
+<code data-trim="" class=" hljs ">
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"b"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code>
+</pre>
+            <div id="grid-track-sizing" class="output">
+              <div class="grid">
+                <div class="a">A</div>
+                <div class="b">B</div>
+                <div class="c">C</div>
+              </div>
+            </div>
+            <textarea class="css" data-id="grid-track-sizing">
+.grid {
+  display: grid;
+  grid: 100px 100px / 200px 200px;
+}
+.a { }
+.b { }
+.c { }
+            </textarea>
+          </div>
+        </section>
+        <section>
+          <h2>Lineas del grid con nombre</h2>
+          <p>Utilizar identificadores personalizados para las líneas</p>
+          <p>Una línea puede tener varios nombres</p>
+        </section>
+        <section>
+        <h2>Lineas del grid con nombre</h2>
+        <div class="html-output-css">
+<pre class="html">
+<code data-trim="" class=" hljs ">
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"b"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code>
+</pre>
+          <div id="grid-track-sizing" class="output">
+            <div class="grid">
+              <div class="a">A</div>
+              <div class="b">B</div>
+              <div class="c">C</div>
+            </div>
+          </div>
+          <textarea class="css" data-id="grid-track-sizing">
+.grid {
+  display: grid;
+  grid-template-columns: [left] 100px [center] 200px [right];
+}
+.a { grid-column: }
+.b { grid-column: }
+.c { grid-column: }
+                    </textarea>
+        </div>
+        </section>
+        <section>
+        <h2>Áreas del grid</h2>
+        <div class="html-output-css">
+<pre class="html">
+<code data-trim="" class=" hljs ">
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"b"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"d"</span>&gt;</span>D<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code>
+</pre>
+          <div id="grid-track-sizing" class="output">
+            <div class="grid">
+              <div class="a">A</div>
+              <div class="b">B</div>
+              <div class="c">C</div>
+              <div class="d">D</div>
+            </div>
+          </div>
+          <textarea class="css" data-id="grid-track-sizing">
+.grid {
+  display: grid;
+  grid-auto-columns: 100px;
+  grid-auto-rows: 75px;
+  grid-template-areas: "header header"
+                       "nav main"
+                       "footer footer";
+}
+.a { grid-area: header; }
+.b { grid-area: main; }
+.c { grid-area: nav; }
+.d { grid-area: footer; }
+                    </textarea>
+        </div>
+        </section>
+        <section>
+          <h2>Alinear y justificar</h2>
+          <p>¡Centrado horizontal & vertical!</p>
+        </section>
+        <section>
+        <h2>Alinear y justificar items</h2>
+        <div class="html-output-css">
+  <pre class="html">
+  <code data-trim="" class=" hljs ">
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"b"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  </code>
+  </pre>
+          <div id="grid-track-sizing" class="output">
+            <div class="grid">
+              <div class="a">A</div>
+              <div class="b">B</div>
+              <div class="c">C</div>
+            </div>
+          </div>
+          <textarea class="css" data-id="grid-track-sizing">
+.grid {
+  display: grid;
+  grid: 100px 100px / 200px 200px;
+  align-items: ;
+  justify-items: ;
+}
+.a { align-self:; justify-self: ; }
+.c { grid-column: span 2; }
+                    </textarea>
+        </div>
+        </section>
+      <section>
+        <h2>Alinear y justificar tracks</h2>
+        <div class="html-output-css">
+<pre class="html">
+<code data-trim="" class=" hljs ">
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"b"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code>
+</pre>
+          <div id="grid-track-sizing" class="output">
+            <div class="grid" style="height: 300px; border: 4px dashed #f8f8f8">
+              <div class="a">A</div>
+              <div class="b">B</div>
+              <div class="c">C</div>
+            </div>
+          </div>
+          <textarea class="css" data-id="grid-track-sizing">
+.grid {
+  display: grid;
+  grid: 100px 100px / 150px 150px;
+  align-content: ;
+  justify-content: ;
+}
+.c { grid-column: span 2; }
+                    </textarea>
+        </div>
+        </section>
+        <section>
+          <h2>Separacion entre tracks</h2>
+          <p>
+            <code>grid-row-gap</code>
+            &&
+            <code>grid-column-gap</code>
+          </p>
+        </section>
+        <section>
+          <h2>Alinear y justificar tracks</h2>
+          <div class="html-output-css">
+<pre class="html">
+  <code data-trim="" class=" hljs ">
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"b"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"d"</span>&gt;</span>D<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"e"</span>&gt;</span>E<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  </code>
+</pre>
+            <div id="grid-track-sizing" class="output">
+              <div class="grid" style="height: 300px;">
+                <div class="a">A</div>
+                <div class="b">B</div>
+                <div class="c">C</div>
+                <div class="d">D</div>
+                <div class="e">E</div>
+              </div>
+            </div>
+<textarea class="css" data-id="grid-track-sizing">
+.grid {
+  display: grid;
+  grid: 100px 100px / 100px 100px 100px;
+  grid-column-gap: ;
+  grid-row-gap: ;
+}
+.d { grid-column: span 2; }
+</textarea>
+          </div>
+          </section>
+          <section>
+            <h2>Colocacion automatica</h2>
+            <p>
+              <code>grid-auto-flow</code>
+            </p>
+          </section>
+        <section>
+          <h2>Colocacion automatica</h2>
+          <div class="html-output-css">
+<pre class="html">
+  <code data-trim="" class=" hljs ">
+    <span class="hljs-tag">&lt;<span class="hljs-title">form</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Etiqueta<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Checkbox<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span>&gt;</span>Enviar formulario<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+  </code>
+</pre>      
+            <div id="grid-auto-placement" class="output">
+              <form lpformnum="1">
+                <label>Etiqueta</label>
+                <input style="font-size: 100%; width: 300px;">
+                <label>Checkbox</label>
+                <input type="checkbox" style="zoom: 2;">
+                <button style="font-size: 100%;">Enviar formulario</button>
+              </form>
+            </div>
+<textarea class="css" data-id="grid-track-sizing">
+form { }
+label { }
+input { }
+button { }
+</textarea>
+          </div>
+          </section>
+        <section>
+          <h2>
+            <code>REPEAT()</code>
+            &
+            <code>MINMAX()</code>
+          </h2>
+          </section>
+        <section>
+          <h2>
+            <code>REPEAT()</code>
+            Automatico
+          </h2>
+          <div class="html-output-css">
+<pre class="html">
+  <code data-trim="" class=" hljs ">
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"a"</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"b"</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"c"</span>&gt;</span>C<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"d"</span>&gt;</span>D<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"e"</span>&gt;</span>E<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  </code>
+</pre>
+        <div id="grid-track-sizing" class="output">
+          <div class="grid" style="height: 300px; border: 4px #f8f8f8 dashed;">
+            <div class="a">A</div>
+            <div class="b">B</div>
+            <div class="c">C</div>
+            <div class="d">D</div>
+            <div class="e">E</div>
+          </div>
+        </div>
+<textarea class="css" data-id="grid-track-sizing">
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+}
+</textarea>
+          </div>
+          </section>
+      </section>
+      <section>
+        <h1>¿Donde lo puedo usar? 🤔</h1>
+        <iframe src="https://caniuse.bitsofco.de/embed/index.html?feat=css-grid&amp;periods=future_2,future_1,current,past_1,past_2&amp;accessible-colours=false"
+          frameborder="0" width="100%" height="800px">
+        </iframe>
+      </section>
+    </section>        
     </div>
   </div>
 
@@ -217,6 +580,24 @@
         { src: 'vendor/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
       ]
     });
+
+    function applyCSSToTextAreas(event) {
+      const textareas = event.currentSlide.getElementsByTagName('textarea')
+      for (let i = 0; i < textareas.length; i++) {
+        applyCSS(textareas[i])
+      }
+    }
+
+    Reveal.addEventListener('slidechanged', applyCSSToTextAreas)
+    Reveal.addEventListener('ready', applyCSSToTextAreas)
+
+    const textareas = document.getElementsByTagName('textarea')
+    for (let i = 0; i < textareas.length; i++) {
+      var textarea = textareas[i]
+      textarea.addEventListener('input', function () {
+        applyCSS(this)
+      })
+    }
   </script>
 </body>
 

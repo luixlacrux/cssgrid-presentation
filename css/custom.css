@@ -4,6 +4,8 @@
   --light-blue: #62CDD9;
   --green: #75BF06;
   --yellow: #F2E205;
+  --white: #f8f8f8;
+  --red: #963939;
 }
 
 .custom-overlay {
@@ -45,4 +47,40 @@ div[data-background-hash] {
 }
 .grid > :nth-child(4) {
   background-color: var(--yellow);
+}
+.grid > :nth-child(5) {
+  background-color: var(--red);
+}
+
+
+.html-output-css {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 20px 1fr;
+  grid-template-rows: auto 10px auto;  
+}
+
+.html {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.output {
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.css {
+  grid-row: 3;
+  grid-column: 1 / span 3;
+}
+
+textarea {
+  width: 100%; 
+  color: var(--black);
+  background: var(--white);
+  padding: 5px;
+  font-family: monospace;
+  font-size: 50%;
+  line-height: 1.2em;
 }
