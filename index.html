@@ -45,7 +45,7 @@
 <body>
   <div class="reveal">
     <div class="slides">
-      <section data-background="#23141C" data-notes=" CSS grid es el sistema para crear layouts mas poderoso disponible en CSS. En si es un sistema bidimensional, lo que significa que puede manejar tanto filas como columnas, a gran diferencia de flexbox, que es un sistema unidimensional donde solo puede controlar filas o columnas pero no ambas al tiempo. Para trabajar con grid layout basicamente se le aplican unas nuevas reglas CSS al elemento padre (Grid Container) y los elementos hijos directos de ese padre (Grid Items)">
+      <section data-background="#23141C" data-notes="Hola a todos! Antes que nada me presento, mi nombre es Luis Lacruz me dedico a desarrollo Front end aca en Monoku, en esta oportunidad les voy contar un poco sobre CSS Grid y porque lo deberias estar usando. Empecemos definiendo que es CSS grid, es el sistema para crear layout, mas poderoso disponible en CSS. En si es un sistema bidimensional, lo que significa que puede manejar tanto filas como columnas, a gran diferencia de flexbox, que es un sistema unidimensional donde solo puede controlar filas o columnas pero no ambas al tiempo. Para trabajar con grid layout basicamente se le aplican unas nuevas reglas CSS al elemento padre (Grid Container) y los elementos hijos directos de ese padre (Grid Items)">
         <div class="initial-grid">
           <div class="initial-grid__item">
             <h1 class="title-bold">CSS Grid</h1>
@@ -70,54 +70,53 @@
           </div>
         </div>
       </section>
-      <section data-background="img/layout.jpg" data-notes="Surge de la necesidad que siempre hemos tenido en la web, para crear layouts de forma facil y rapida. Ademas que el sistema grid se lleva usando en el desarrollo web
-       desde hace rato, ya que incluso las primeras paginas web eran practicamente la copia de un periodico o revista online y todo seguia esa estructura. A lo largo de la historia de css se han utilizado muchas tecnicas para crear layouts.">
+      <section data-background="img/layout.jpg" data-notes="Surge de la necesidad que siempre hemos tenido en la web, para crear layouts de forma facil y rapida. Ademas que el sistema grid se lleva usando en el desarrollo web desde hace rato, ya que incluso las primeras paginas web eran practicamente la copia de un periodico o revista online y todo seguia esa estructura. A lo largo de la historia de css se han utilizado muchas tecnicas para crear layouts.">
         <div class="custom-overlay">
           <h1>¿Por qué CSS grid?</h1>
         </div>
       </section>
       <section data-background="img/layout.jpg">
-        <section>
+        <section data-notes="Hablemos un poco sobre las distintas tecnicas que se han usado para maquetar layout en CSS a lo largo de su historia">
           <div class="custom-overlay">
             <h1>Evolución</h1>
           </div>
         </section>
-        <section data-markdown data-notes>
+        <section data-markdown data-notes="Seguramente a pocos le toco usarlo pero usar tablas para maquetar un sitio era lo mas común en lo que fue el inicio del desarrollo web. Imaginense lo tedioso que era hacer tu layout usando tablas, ademas que semanticamente esta mal ya que las tablas estan hechas para contener datos tabulares y no para darle a estructura a tu sitio">
           <div class="custom-overlay">
             <textarea data-template>
                 ## `<Table>`
             </textarea>
           </div>
         </section>
-        <section data-markdown>
+        <section data-markdown  data-notes="Luego se empezo a usar `float` que esta bien usarlo cuando necesitas que una imagen/texto este a la derecha y el resto del contenido a la izquierda en si esa es su funcionalidad. Pero ya para generar layouts donde necesitas filas y columnas no es nada practico.">
           <div class="custom-overlay">
             <textarea data-template>
                 ## `float`
             </textarea>
           </div>
         </section>
-        <section data-markdown>
+        <section data-markdown data-notes="Otra cosa era usar la propiedad de `display` `inline-block` es un poco similar al float, ya que puedes colocarlos elementos uno al lado del otro sin que este agregara un salto de linea como lo hace `display: block;` sin embargo cuando tratabas de hacer un grid complicado ya se volvia muy dificil hacerlo.">
           <div class="custom-overlay">
             <textarea data-template>
                 ## `display: inline-block;`
             </textarea>
           </div>
         </section>
-        <section data-markdown>
+        <section data-markdown data-notes="Ya hoy en dia existen distintos frameworks que son muy usados, ya que nos ayuda a obtener un grid sin tanto esfuerzo, todo esto se hace mediante clases que se le aplican a los elementos. La mayoria de estos frameworks o todos implementan un sistema de grid con cierta cantidad de columnas y tu tienes que estar adaptando y sacando cuentas para que tu layout sea adapte a ello. A pesar de eso no deja de ser una de las mejorcitas opciones que existian para crear grids complejos.">
           <div class="custom-overlay">
             <textarea data-template>
                 ## `Frameworks de CSS`
             </textarea>
           </div>
         </section>
-        <section data-markdown>
+        <section data-markdown data-notes="Luego de eso surge `flexbox` que para hacer contenido en una sola dimension esta perfecto para ello o por ejemplo necesitas hacer una fila de elementos y quieres que uno ocupe todo el espacio disponible y que uno se extienda y otra se haga mas pequeño">
           <div class="custom-overlay">
             <textarea data-template>
                 ## `Flexbox`
             </textarea>
           </div>
         </section>
-        <section data-markdown>
+        <section data-markdown data-notes="CSS Grid es la nueva especificacion que tenemos disponible en todos los navegadores modernos para hacer layaouts complejos sin casi esfuerzo">
           <div class="custom-overlay">
             <textarea data-template>
                 ## `CSS Grid`
@@ -125,13 +124,13 @@
           </div>
         </section>
       </section>
-      <section data-background="img/layout.jpg">
+      <section data-background="img/layout.jpg" data-notes="Antes de comenzar con grid css, lo ideal es dominar el tema de `Flexbox` ya que grid css toma casi la misma filosofia (donde la mayoria de reglas css son aplicadas al elemento padre para definir el comportamiento de sus hijos directos). Ademas existen una serie de conceptos propios de la especificacion que se deben dominar.">
         <section>
           <div class="custom-overlay">
             <h1>Fundamentos</h1>
           </div>
         </section>
-        <section>
+        <section data-notes=" Va a ser el elemento padre principal que va tener la propiedad `display: grid / inline-grid` junto con otras nuevas propiedades para manejar el comportamiento del grid.">
           <div class="custom-overlay">
             <h1>Grid Container</h1>
             <div class="grid" style="display: grid; grid: 100px 1fr auto / 200px 1fr; height: 450px;">
@@ -140,6 +139,14 @@
               <div style="grid-row: 2 / 4; grid-column: 1">Menu</div>
               <div style="grid-row: 3; grid-column: 2">Footer</div>
               <div style="grid-row: 1 / 4; grid-column: 1 / span 4; border: 6px solid #fdfeee; background: rgba(255, 255, 255, 0.5); border-radius: 0;"></div>
+          </div>"
+        </section>
+        <section data-notes=" Va a ser el elemento padre principal que va tener la propiedad `display: grid / inline-grid` junto con otras nuevas propiedades para manejar el comportamiento del grid.">
+          <div class="custom-overlay">
+            <h1>Grid Item</h1>
+            <div class="image-carbon-container">
+              <img class="image-carbon" src="img/grid-item.png" alt="">
+            </div>
           </div>
         </section>
         <section>
