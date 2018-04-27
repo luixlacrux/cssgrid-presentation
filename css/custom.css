@@ -63,10 +63,11 @@ div[data-background-hash] {
   align-items: center;
   grid-template-columns: 1fr 20px 1fr;
   grid-template-rows: auto 10px auto;  
-  justify-content: center
+  justify-items: space-between
 }
 
 .html {
+  justify-self: start; 
   grid-row: 1;
   grid-column: 1;
 }
@@ -103,7 +104,7 @@ textarea {
 .initial-grid {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 45vh 25vh;
+  grid-template-rows: 45% 25%;
   grid-gap: 15px;
 }
 .initial-grid__item {
@@ -155,4 +156,5 @@ textarea {
   border: none !important;
   margin: 0 !important;
   box-shadow: none !important;
+  height: 300px !important;
 }
